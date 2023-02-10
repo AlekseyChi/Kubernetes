@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - build:
+          context: .
+          dockerfile: Dockerfile
+        imagePullPolicy: Never
+        name: webapp
+        ports:
+          - containerPort: 8080
+            name: webapp
+        volumeMounts:
+          - name: secrets-for-db
+            mountPath: /app/secrets
+      volumes:
+        - name: secrets-for-db
+          secret:
+            secretName: db-password        
