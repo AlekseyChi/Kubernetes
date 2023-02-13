@@ -2,9 +2,7 @@ services:
 
   #Python Service
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: alekseychii/flask-app
     container_name: app
     working_dir: /app
 

@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - image: mariadb
-          imagePullPolicy: Never
           name: db
           env:
             - name: MYSQL_DATABASE
@@ -23,7 +22,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: db-password
-                  key: password
+                  key: db-password
           ports:
             - containerPort: 3306
               name: db

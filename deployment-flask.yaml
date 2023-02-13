@@ -1,30 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webapp
+      app: app
   template:
     metadata:
       labels:
-        app: webapp
+        app: app
     spec:
       containers:
-        - build:
-          context: .
-          dockerfile: Dockerfile
-        imagePullPolicy: Never
-        name: webapp
+      - image: alekseychii/flask-app:latest
+        name: app
         ports:
-          - containerPort: 8080
-            name: webapp
+        - containerPort: 5000
+          name: app
         volumeMounts:
-          - name: secrets-for-db
-            mountPath: /app/secrets
-      volumes:
         - name: secrets-for-db
-          secret:
-            secretName: db-password        
+          mountPath: /app
+      volumes:
+      - name: secrets-for-db
+        secret:
+          secretName: db-password
