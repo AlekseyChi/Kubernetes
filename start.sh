@@ -1,5 +1,3 @@
-echo "Создание пароля"
-
 eval $(minikube docker-env)
 
 docker build . -t flask-app
