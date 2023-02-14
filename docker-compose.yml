@@ -2,8 +2,9 @@ services:
 
   #Python Service
   app:
-    image: alekseychii/flask-app
-    container_name: app
+    build: .
+    image: flask-app
+    container_name: flask-app
     working_dir: /app
 
     ports:
@@ -18,7 +19,7 @@ services:
   #Mariadb
   db:
     image: mariadb:latest
-    container_name: db
+    container_name: mariadb
     restart: 'always'
 
     command: '--default-authentication-plugin=mysql_native_password'

@@ -13,15 +13,16 @@ spec:
         app: app
     spec:
       containers:
-      - image: alekseychii/flask-app:latest
-        name: app
-        ports:
-        - containerPort: 5000
+        - image: flask-app
           name: app
-        volumeMounts:
-        - name: secrets-for-db
-          mountPath: /app
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+              name: app
+          volumeMounts:
+            - name: secrets-for-db
+              mountPath: /app
       volumes:
-      - name: secrets-for-db
-        secret:
-          secretName: db-password
+        - name: secrets-for-db
+          secret:
+            secretName: db-password
