@@ -8,10 +8,10 @@ services:
     working_dir: /app
 
     ports:
-      - "8080:80"
+      - "5000:5000"
 
     volumes:
-      - './db-password:/run/secrets/db-password'
+      - './db-password:/app/db-password'
 
     depends_on:
       - db
