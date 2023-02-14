@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
+  labels:
+    app: app
 spec:
   replicas: 1
   selector:
@@ -13,16 +15,8 @@ spec:
         app: app
     spec:
       containers:
-        - image: flask-app
-          name: app
+        - name: app
+          image: flask-app
           imagePullPolicy: Never
           ports:
-            - containerPort: 5000
-              name: app
-          volumeMounts:
-            - name: secrets-for-db
-              mountPath: /app
-      volumes:
-        - name: secrets-for-db
-          secret:
-            secretName: db-password
+            - containerPort: 5000 

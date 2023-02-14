@@ -2,9 +2,7 @@ echo "Создание пароля"
 
 eval $(minikube docker-env)
 
-docker-compose pull
-
-docker-compose build
+docker build . -t flask-app
 
 kubectl create secret generic db-password --from-file=./db-password
 

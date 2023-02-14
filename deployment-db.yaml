@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - image: mariadb
-          imagePullPolicy: Never
           name: db
           env:
             - name: MYSQL_DATABASE
